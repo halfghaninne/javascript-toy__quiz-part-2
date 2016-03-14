@@ -18,16 +18,19 @@ window.onload = function(){
       answerRequest.open("GET", answerPath);
 
       answerRequest.addEventListener("load", function(event) {
-        alert();
-        if (window.confirm(event.target.responseText + "Next question?")) { 
+        //if user says ok next question, then increment questionTracker and repeat process.
+        if (window.confirm(event.target.responseText + "  Next question?")) { 
           questionTracker += 1;
-          var request = new XMLHttpRequest;
-          var path = "http://localhost:9292/question/" + questionTracker;
-          request.open("GET", path);
+          debugger;
+          var nextRequest = new XMLHttpRequest;
+          var nextPath = "http://localhost:9292/question/" + questionTracker;
+          nextRequest.open("GET", nextPath);
 
-          request.addEventListener("load", function(event) {
+          nextRequest.addEventListener("load", function(event) {
             prompt(event.target.responseText)
           }); //ends function block, ends EL args, ends EL
+
+          nextRequest.send();
         } // ends if statement
       }); //ends function block, ends EL args, ends EL
 
