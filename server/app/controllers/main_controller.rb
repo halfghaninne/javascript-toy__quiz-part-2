@@ -3,7 +3,8 @@ MyApp.get "/" do
 end
 
 MyApp.get "/question/:tracker" do
-  question = Question.all[:tracker]
+  index = params[:tracker].to_i
+  question = Question.all[index]
   @question = question.content
   @answers = question.answers # returns collection
 

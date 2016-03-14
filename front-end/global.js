@@ -4,14 +4,10 @@ window.onload = function(){
 
   var questionTracker = 0;
 
-  button.addEventListener("click", promptCall(questionTracker));
-
-  // }); ends function block, ends EL args, ends EL
-
-
-  function promptCall(questionTracker) {
+  button.addEventListener("click", function() {
     var request = new XMLHttpRequest;
     var path = "http://localhost:9292/question/" + questionTracker;
+    // String interpolation was giving me headaches here. How can I do that instead of concatenation?
     request.open("GET", path);
 
     request.addEventListener("load", function(event) {
@@ -22,7 +18,9 @@ window.onload = function(){
 
     questionTracker += 1;
 
-  }; // ends block, ends function prompt
+  }); // ends function block, ends EL args, ends EL
+
+
 
 
 
