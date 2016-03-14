@@ -4,6 +4,21 @@ window.onload = function(){
 
   var questionTracker = 0;
 
+  // // makes XHR to get the question
+  // function getQuestionPrompt() {
+
+  // };
+
+  // // makes XHR to check user input against db
+  // function compareAnswer(event) {
+
+  // }; 
+
+  // // when answerRequest loads, puts up a confirm box
+  // function moveForward(event) {
+
+  // }
+
   button.addEventListener("click", function() {
     var request = new XMLHttpRequest;
     var path = "http://localhost:9292/question/" + questionTracker;
@@ -11,7 +26,7 @@ window.onload = function(){
     request.open("GET", path);
 
     request.addEventListener("load", function(event) {
-      userAnswer = prompt(event.target.responseText)
+      var userAnswer = prompt(event.target.responseText)
       var answerRequest = new XMLHttpRequest;
       var answerPath = "http://localhost:9292/question/" + questionTracker + "/" + userAnswer;
 
@@ -21,7 +36,6 @@ window.onload = function(){
         //if user says ok next question, then increment questionTracker and repeat process.
         if (window.confirm(event.target.responseText + "  Next question?")) { 
           questionTracker += 1;
-          debugger;
           var nextRequest = new XMLHttpRequest;
           var nextPath = "http://localhost:9292/question/" + questionTracker;
           nextRequest.open("GET", nextPath);
@@ -44,19 +58,6 @@ window.onload = function(){
     // questionTracker += 1;
 
   }); // ends function block, ends EL args, ends EL
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
