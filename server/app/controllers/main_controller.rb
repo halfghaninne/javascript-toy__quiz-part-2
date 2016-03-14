@@ -11,7 +11,11 @@ MyApp.get "/question/:tracker" do
   erb :"question"
 end
 
-# MyApp.get "/question/:tracker/answer" do
-
-#   erb :"answer"
-# end
+MyApp.get "/question/:tracker/:answer" do
+  index = params[:tracker].to_i
+  question = Question.all[index]
+  if params[:answer] == question.correct_answer.content
+    erb :"success"
+  else
+    erb :"failure"
+end
