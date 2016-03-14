@@ -1,3 +1,5 @@
+#  id  |  content 
+
 class Question < ActiveRecord::Base
 
   # Returns an ActiveRecord::Relation (collection) of Answer objects.
