@@ -4,20 +4,22 @@ window.onload = function(){
 
   var questionTracker = 0;
 
-  button.addEventListener("click", function(event){
-    promptCall(questionTracker);
+  button.addEventListener("click", promptCall(questionTracker));
 
-  }); // ends function block, ends EL args, ends EL
+  // }); ends function block, ends EL args, ends EL
 
 
   function promptCall(questionTracker) {
-    request = new XMLHttpRequest;
-    request.open("GET", "localhost:9292/question/{questionTracker}");
+    var request = new XMLHttpRequest;
+    var path = "http://localhost:9292/question/" + questionTracker;
+    request.open("GET", path);
 
     request.addEventListener("load", function(event) {
       prompt(event.target.responseText) //pseudo
     }) // ends function block, ends EL args, ends EL
     
+    request.send();
+
     questionTracker += 1;
 
   }; // ends block, ends function prompt
@@ -34,4 +36,4 @@ window.onload = function(){
 
 
 
-};
+}; // end windowonload.
