@@ -3,7 +3,7 @@ window.onload = function(){
   var submit = document.getElementById("submitter");
   var questionDiv = document.getElementById("question");
   var choicesDiv = document.getElementById("choices");
-  var userAnswerDiv = document.getElementById("answer");
+  var userAnswer = document.getElementById("answer");
   var questionResultDiv = document.getElementById("question_result");
   var next = document.getElementById("next");
   var userTotalDiv = document.getElementById("total_result");
@@ -19,19 +19,39 @@ window.onload = function(){
     request.open("GET", path);
 
     request.addEventListener("load", function(event) {
+      // formatting issue; leave it for now.
       questionDiv.innerHTML = event.target.responseText;
     }); //ends function block, ends EL args, ends EL
 
     request.send();
       
-  }; // ends function definition
+  }; // ends getQuestionPrompt function definition
+
+  // makes XHR to check user input against db
+  function compareAnswer() {
+    var request = new XMLHttpRequest;
+    var path = "http://localhost:9292/question/" + questionTracker + "/" + userAnswer.value;
+
+    request.open("GET", path);
+
+    request.addEventListener("load", function(event) {
+      questionResultDiv.innerHTML = "You answered that!";
+    }); //ends function block, ends EL args, ends EL
+
+    request.send();
+  }; //ends compareAnswer function
 
   getQuestionPrompt();
 
-  // // makes XHR to check user input against db
-  // function compareAnswer(event) {
+  //test function
+  function someFunction() {
+    alert("clicked!");
+  };
 
-  // }; 
+  submit.addEventListener("click", compareAnswer);
+
+
+
 
   // // when answerRequest loads, puts up a confirm box
   // function moveForward(event) {
