@@ -13,13 +13,14 @@ window.onload = function(){
     request.addEventListener("load", function(event) {
       userAnswer = prompt(event.target.responseText)
       var answerRequest = new XMLHttpRequest;
-      var answerPath = "http://localhost:9292/question/" + questionTracker + "/" + userAnswer
+      var answerPath = "http://localhost:9292/question/" + questionTracker + "/" + userAnswer;
 
       answerRequest.open("GET", answerPath);
 
       answerRequest.addEventListener("load", function(event) {
-        alert(event.targetresponseText)
-      })
+        alert(event.target.responseText);
+      }); //ends function block, ends EL args, ends EL
+
       answerRequest.send();
 
 
@@ -27,7 +28,7 @@ window.onload = function(){
     
     request.send();
 
-    questionTracker += 1;
+    // questionTracker += 1;
 
   }); // ends function block, ends EL args, ends EL
 

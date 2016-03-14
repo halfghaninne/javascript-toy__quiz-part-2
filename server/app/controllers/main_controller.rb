@@ -14,8 +14,9 @@ end
 MyApp.get "/question/:tracker/:answer" do
   index = params[:tracker].to_i
   question = Question.all[index]
-  if params[:answer] == question.correct_answer.content
+  if params[:answer].to_s == question.correct_answer[0].content
     erb :"success"
   else
     erb :"failure"
+  end
 end
