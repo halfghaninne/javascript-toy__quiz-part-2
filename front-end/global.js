@@ -10,6 +10,19 @@ window.onload = function(){
   
   var questionTracker = 0;
   var userTotal = 0;
+  var questionsTotal = 0;
+  questionsTotal = getQuestionCount();
+
+  // gets number of questions from database
+  function getQuestionCount() {
+    var request = new XMLHttpRequest;
+    request.open("GET", "http://localhost:9292/questions");
+    request.addEventListener("load", function(event) {
+      questionsTotal = event.target.responseText;
+      debugger;
+    }); //
+    request.send();
+  }; // ends getQuestionCount function def
 
   // makes XHR to get the question
   function getQuestionPrompt() {
@@ -36,6 +49,10 @@ window.onload = function(){
 
     request.addEventListener("load", function(event) {
       questionResultDiv.innerHTML = event.target.responseText;
+      if (event.target.responseText == 'Success!') {
+        userTotal ++;
+      };
+      userTotalDiv.innerHTML = userTotal + " of " + questionsTotal + " questions right!"
     }); //ends function block, ends EL args, ends EL
 
     request.send();

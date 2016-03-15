@@ -20,3 +20,9 @@ MyApp.get "/question/:tracker/:answer" do
     erb :"failure"
   end
 end
+
+MyApp.get "/questions" do
+  @count = Question.count
+  erb :"questions"
+end
+
