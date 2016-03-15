@@ -35,7 +35,7 @@ window.onload = function(){
     request.open("GET", path);
 
     request.addEventListener("load", function(event) {
-      questionResultDiv.innerHTML = "You answered that!";
+      questionResultDiv.innerHTML = event.target.responseText;
     }); //ends function block, ends EL args, ends EL
 
     request.send();
@@ -48,15 +48,22 @@ window.onload = function(){
     alert("clicked!");
   };
 
+   // when answerRequest loads
+  function moveForward() {
+    userAnswer.value = "";
+    questionResultDiv.innerHTML = "";
+    questionTracker++;
+    getQuestionPrompt();
+  };
+
   submit.addEventListener("click", compareAnswer);
 
+  next.addEventListener("click", moveForward);
 
 
 
-  // // when answerRequest loads, puts up a confirm box
-  // function moveForward(event) {
 
-  // }
+ 
 
 
 //   button.addEventListener("click", function() {
