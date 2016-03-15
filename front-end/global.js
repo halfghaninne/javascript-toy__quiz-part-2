@@ -80,23 +80,37 @@ window.onload = function(){
     request.send();
   }; //ends compareAnswer function
 
-  // fired when answerRequest loads
+  // fired when next button is clicked
   function moveForward() {
     userAnswer.value = "";
     questionResultDiv.innerHTML = "";
     questionTracker++;
     getQuestionPrompt();
+    getQuestionAnswers();
   }; // ends moveForward function
+
+  function prepDOM() {
+    questionDiv.innerHTML = "Loading..."
+    getQuestionPrompt();
+    getQuestionAnswers();
+
+    submit.addEventListener("click", compareAnswer);
+
+    next.addEventListener("click", moveForward);
+  };
+
 
   /////////////////////////////////////////////////////////////
 
   /////////////////// SET DOM FOR GAME PLAY ///////////////////
 
-  getQuestionPrompt();
-  getQuestionAnswers();
+  prepDOM();
+  // getQuestionPrompt();
+  // getQuestionAnswers();
 
-  submit.addEventListener("click", compareAnswer);
+  // submit.addEventListener("click", compareAnswer);
 
-  next.addEventListener("click", moveForward);
+  // next.addEventListener("click", moveForward);
 
   /////////////////////////////////////////////////////////////
+};
