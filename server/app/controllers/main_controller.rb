@@ -6,15 +6,21 @@ MyApp.get "/question/:tracker" do
   index = params[:tracker].to_i
   question = Question.all[index]
   @question = question.content
-  @answers = question.answers # returns collection
 
   erb :"question"
 end
 
-MyApp.get "/question/:tracker/:answer" do
+MyApp.get "/question/:tracker/answers" do
   index = params[:tracker].to_i
   question = Question.all[index]
-  if params[:answer].to_s == question.correct_answer[0].content
+  @answers = question.answers # returns collection
+  erb :"answers"
+end
+
+MyApp.get "/question/:tracker/answers/:correct_answer" do
+  index = params[:tracker].to_i
+  question = Question.all[index]
+  if params[:correct_answer].to_s == question.correct_answer[0].content
     erb :"success"
   else
     erb :"failure"
